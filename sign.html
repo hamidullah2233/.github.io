@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Signup</title>
+    <style>
+        body {
+            text-align: center;
+            font-family: Arial, sans-serif;
+        }
+        
+        .container {
+            margin: auto;
+            width: 300px;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        input {
+            width: 90%;
+            padding: 8px;
+            margin: 8px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        
+        button {
+            padding: 10px 20px;
+            background: green;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        
+        button:hover {
+            background: darkgreen;
+        }
+        
+        .error {
+            color: red;
+            font-size: 14px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Sign Up</h1>
+        <form id="signupForm">
+            <label for="email">Email Address</label><br>
+            <input type="email" id="email" placeholder="Enter Email Address" required><br>
+
+            <label for="password">Password</label><br>
+            <input type="password" id="password" placeholder="Enter Password" required><br>
+
+            <label for="confirm-password">Confirm Password</label><br>
+            <input type="password" id="confirm-password" placeholder="Confirm Password" required><br>
+
+            <p class="error" id="errorMsg"></p>
+            <button type="submit">Signup</button>
+        </form>
+
+        <h3>Already have an account? <a href="LOGG.html">Login</a></h3>
+    </div>
+
+    <script>
+        document.getElementById("signupForm").addEventListener("submit", function(event) {
+            event.preventDefault();
+
+            let email = document.getElementById("email").value.trim();
+            let password = document.getElementById("password").value;
+            let confirmPassword = document.getElementById("confirm-password").value;
+            let errorMsg = document.getElementById("errorMsg");
+
+            errorMsg.innerText = "";
+
+            if (password !== confirmPassword) {
+                errorMsg.innerText = "Passwords do not match ❌";
+                return;
+            }
+
+            // Save to LocalStorage
+            localStorage.setItem("userEmail", email);
+            localStorage.setItem("userPassword", password);
+
+            alert("Signup Successful ✅ Now you can Login!");
+            window.location.href = "login.html"; // Redirect to login
+        });
+    </script>
+</body>
+
+</html>
+s
